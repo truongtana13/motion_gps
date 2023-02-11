@@ -51,12 +51,12 @@ void onStart(ServiceInstance service) async {
   Timer.periodic(const Duration(seconds: 1), (timer) async {
     if (service is AndroidServiceInstance)
     {
-
-        if (counter==1)  /// turn off gps  5s
+        ///-------------- This code demonstrate my issue ------------
+        if (counter==1)  /// turn off gps tracker in 5s
           {
             await BackgroundLocationTrackerManager.stopTracking();
           }
-        if (counter==6)  /// turn on gps  5s
+        if (counter==6)  /// turn on gps tracker in 5s
           {
           await BackgroundLocationTrackerManager.startTracking();
           }
@@ -205,7 +205,7 @@ class _MyAppState extends State<MyApp> {
           width: double.infinity,
           child: Column(
             children: [
-                      Text('Location List Length : $_lens'),
+                      Text('Length of location list : $_lens'),
                       Text(_gpsStatus),
                       ElevatedButton(
                       onPressed:() async {
@@ -216,7 +216,7 @@ class _MyAppState extends State<MyApp> {
                           prefs.remove(LocationDao._locationsKey);
                         }},
                       style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                      child: const Text('Clear Location List'),
+                      child: const Text('Clear location list'),
                       ),
                       ElevatedButton(
                       onPressed:() async {
